@@ -1,4 +1,10 @@
-{
-  "prefId": "1",
-  "prefType": "Hot"
-}
+[
+  {
+    "prefId": "1",
+    "prefType": "Hot"
+  },
+  {
+    "prefId": "2",
+    "prefType": "Sport"
+  }
+]

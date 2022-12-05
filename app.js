@@ -21,6 +21,7 @@ const Content = JSON.parse(
 const getallContent = (req, res) => {
   res.status(200).json({
     status: "success",
+    requestedAT: req.requesttime,
     results: Content.length,
     data: {
       Content
@@ -127,6 +128,16 @@ const deleteUser = (req, res) => {
     message: "This Function is not implemented yet!😒"
   });
 };
+
+app.use((req, res, next) => {
+  console.log("Hello from the Middleware😎");
+  next();
+});
+
+app.use((req, res, next) => {
+  req.requesttime = new Date().toISOString();
+  next();
+});
 
 // app.get("/api/v1/content", getallContent);
 // app.post("/api/v1/content", createContent);

@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "userName": "Akil",
+  "age": "18",
+  "password": "#ed",
+  "mailID": "selvamakilan1@gmail.com",
+  "accessLevel": "Admin",
+  "prefIds": ["NULL"]
+}

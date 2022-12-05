@@ -93,6 +93,41 @@ const deleteContent = (req, res) => {
   });
 };
 
+const getAllUser = (req, res) => {
+  res.status(500).json({
+    status: "Error",
+    message: "This Function is not implemented yet!😒"
+  });
+};
+
+const createUser = (req, res) => {
+  res.status(500).json({
+    status: "Error",
+    message: "This Function is not implemented yet!😒"
+  });
+};
+
+const getSingleUser = (req, res) => {
+  res.status(500).json({
+    status: "Error",
+    message: "This Function is not implemented yet!😒"
+  });
+};
+
+const updateUser = (req, res) => {
+  res.status(500).json({
+    status: "Error",
+    message: "This Function is not implemented yet!😒"
+  });
+};
+
+const deleteUser = (req, res) => {
+  res.status(500).json({
+    status: "Error",
+    message: "This Function is not implemented yet!😒"
+  });
+};
+
 // app.get("/api/v1/content", getallContent);
 // app.post("/api/v1/content", createContent);
 // app.get("/api/v1/content/:id", getSingleContent);
@@ -105,3 +140,10 @@ app
   .get(getSingleContent)
   .patch(updateContent)
   .delete(deleteContent);
+
+app.route("/api/v1/user").get(getAllUser).post(createUser);
+app
+  .route("/api/v1/user/:id")
+  .get(getSingleUser)
+  .patch(updateUser)
+  .delete(deleteUser);

@@ -1,8 +1,12 @@
 const express = require("express");
 const fs = require("fs");
+const morgan = require("morgan");
 const app = express();
+const userRouters = express.Router();
+const contentRouters = express.Router();
 app.use(express.json());
 
+app.use(morgan("dev"));
 const port = 3000;
 app.listen(port, () => {
   console.log(`your app is running under ${port}🍷🍷🍷.....!!`);
@@ -139,22 +143,19 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.get("/api/v1/content", getallContent);
-// app.post("/api/v1/content", createContent);
-// app.get("/api/v1/content/:id", getSingleContent);
-// app.patch("/api/v1/content/:id", updateContent);
-// app.delete("/api/v1/content/:id", deleteContent);
+app.use("/api/v1/user", userRouters);
+app.use("/api/v1/content", contentRouters);
 
-app.route("/api/v1/content").get(getallContent).post(createContent);
-app
-  .route("/api/v1/content/:id")
+contentRouters.route("/").get(getallContent).post(createContent);
+contentRouters
+  .route("/:id")
   .get(getSingleContent)
   .patch(updateContent)
   .delete(deleteContent);
 
-app.route("/api/v1/user").get(getAllUser).post(createUser);
-app
-  .route("/api/v1/user/:id")
+userRouters.route("/").get(getAllUser).post(createUser);
+userRouters
+  .route("/:id")
   .get(getSingleUser)
   .patch(updateUser)
   .delete(deleteUser);

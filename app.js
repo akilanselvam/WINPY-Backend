@@ -6,10 +6,6 @@ const contentRouters = require("./Routes/ContentRouter");
 
 app.use(express.json());
 app.use(morgan("dev"));
-const port = 3000;
-app.listen(port, () => {
-  console.log(`your app is running under ${port}🍷🍷🍷.....!!`);
-});
 app.get("/", (req, res) => {
   res.status(200).json({
     message: "Your server request is working fine",
@@ -29,3 +25,5 @@ app.use((req, res, next) => {
 
 app.use("/api/v1/user", userRouters);
 app.use("/api/v1/content", contentRouters);
+
+module.exports = app;

@@ -22,7 +22,7 @@ exports.createContent = (req, res) => {
   const newContent = Object.assign({ id: newId }, req.body);
   Content.push(newContent);
   fs.writeFile(
-    `${__dirname}/Dev-Data/Content.json`,
+    `${__dirname}/../Dev-Data/Content.json`,
     JSON.stringify(Content),
     err => {
       res.status(201).json({

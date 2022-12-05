@@ -17,7 +17,8 @@ app.get("/", (req, res) => {
 const Content = JSON.parse(
   fs.readFileSync(`${__dirname}/Dev-Data/Content.json`)
 );
-app.get("/api/v1/content", (req, res) => {
+
+const getallContent = (req, res) => {
   res.status(200).json({
     status: "success",
     results: Content.length,
@@ -25,9 +26,9 @@ app.get("/api/v1/content", (req, res) => {
       Content
     }
   });
-});
+};
 
-app.post("/api/v1/content", (req, res) => {
+const createContent = (req, res) => {
   console.log(Content.length);
   //   console.log(req.body);
   const newId = Content[Content.length - 1].id + 1;
@@ -45,9 +46,8 @@ app.post("/api/v1/content", (req, res) => {
       });
     }
   );
-});
-
-app.get("/api/v1/content/:id", (req, res) => {
+};
+const getSingleContent = (req, res) => {
   const id = req.params.id * 1;
   console.log(req.params);
   if (id > Content.length) {
@@ -63,9 +63,8 @@ app.get("/api/v1/content/:id", (req, res) => {
       Contents
     }
   });
-});
-
-app.patch("/api/v1/content/:id", (req, res) => {
+};
+const updateContent = (req, res) => {
   const id = req.params.id * 1;
   if (id > Content.length) {
     return res.status(404).json({
@@ -79,9 +78,8 @@ app.patch("/api/v1/content/:id", (req, res) => {
       tour: "<updated text will be here>"
     }
   });
-});
-
-app.delete("/api/v1/content/:id", (req, res) => {
+};
+const deleteContent = (req, res) => {
   const id = req.params.id * 1;
   if (id > Content.length) {
     return res.status(404).json({
@@ -93,4 +91,17 @@ app.delete("/api/v1/content/:id", (req, res) => {
     status: "Success",
     data: null
   });
-});
+};
+
+// app.get("/api/v1/content", getallContent);
+// app.post("/api/v1/content", createContent);
+// app.get("/api/v1/content/:id", getSingleContent);
+// app.patch("/api/v1/content/:id", updateContent);
+// app.delete("/api/v1/content/:id", deleteContent);
+
+app.route("/api/v1/content").get(getallContent).post(createContent);
+app
+  .route("/api/v1/content/:id")
+  .get(getSingleContent)
+  .patch(updateContent)
+  .delete(deleteContent);

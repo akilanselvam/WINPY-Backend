@@ -3,7 +3,17 @@ const fs = require("fs");
 const Content = JSON.parse(
   fs.readFileSync(`${__dirname}/../Dev-Data/Content.json`)
 );
-
+exports.quickcheck = (req, res, next, val) => {
+  console.log(`The Id is ${val}`);
+  const id = req.params.id * 1;
+  if (id > Content.length) {
+    return res.status(404).json({
+      status: "failed to load",
+      message: "Failed to load the requested ID"
+    });
+  }
+  next();
+};
 exports.getallContent = (req, res) => {
   res.status(200).json({
     status: "success",

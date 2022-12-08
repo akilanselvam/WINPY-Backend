@@ -2,6 +2,7 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 const app = require("./app");
 const mongoose = require("mongoose");
+const {job} = require('./Scheduler/schedulerService');
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`your app is running under ${port}🍷🍷🍷.....!!`);
@@ -23,6 +24,8 @@ mongoose
   .then(con => {
     console.log("The Connections is Successfull");
   });
+
+job();
 
 const contentSchema = new mongoose.Schema({
   title: {
